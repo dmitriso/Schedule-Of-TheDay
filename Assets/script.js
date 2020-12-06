@@ -1,48 +1,40 @@
 // DOM Variables
-var currentDayEl = $("#currentDay");
-var todoInput = $(".task");
-var date = moment().format("dddd, MMM. Do YY");
-var todos = [];
+var taskData = [];
+var taskHour = [];
 
-
-// THEN the current day is displayed at the top of the calendar
-// Must have funtion that uses the current New date and displays on heading
-$(document).ready(function() {
-    $("#currentDay").text(date);
+$(document).ready(function () {
+    // Must have funtion that uses the current New date and displays on heading
+    $("#currentDay").text(moment().format("dddd, MMM. Do YY"));
+    // Obtaining saved task from DOM
+    $("#1 .task").val(localStorage.getItem("1"));
+    $("#2 .task").val(localStorage.getItem("2"));
+    $("#3 .task").val(localStorage.getItem("3"));
+    $("#4 .task").val(localStorage.getItem("4"));
+    $("#5 .task").val(localStorage.getItem("5"));
+    $("#6 .task").val(localStorage.getItem("6"));
+    $("#7 .task").val(localStorage.getItem("7"));
+    $("#8 .task").val(localStorage.getItem("8"));
 })
 
-// Retrieve stored todos from local storage
-function init() {
-    // Parses JSON string to an object
-    var storedTodos = JSON.parse(localStorage.getItem("todos"));
-    console.log(storedTodos)
-}
+    // Event for clicking the save button
+    $(".saveBtn").on("click", function(event) {
+        event.preventDefault();
+        console.log("ive been clicked");
+        // saving user entry to variable
+        var taskData = $(this).siblings("textarea").val();
+        // // saving designated task hour
+        var taskHour = $(this).parent("div").attr("id");
+        console.log(taskHour);
+        console.log(taskData);
+        // // creating objects for each task in the DOM
+        localStorage.setItem(taskHour, taskData);
+        // // saving over new value 
+    })
 
-// Stores user todo tasks
-function storeTodos() {
-    // Stringify an set "todos" key in localStorage to todos
-    localStorage.setItem("todos",JSON.stringify(todos));
-}
 
-// This allows user to save tasks to localStorage when the button is clicked
-$(".saveBtn").on("click",function(event) {
-    event.preventDefault();
-    var todoText = todoInput.val();
-    // Return if user leaves field empty
-    if (todoText === "") {
-        return;
-    }
-    // Sets value of "todoText" to "todos"
-    todos.push(todoText);
-    console.log(todoText);
-
-storeTodos();
-init();
-})
-
-// WHEN I click into a time block
-// THEN I can enter an event
-// WHEN I click the save button for that time block
-// THEN the text for that event is saved in local storage
-// WHEN I refresh the page
-// THEN the saved events persist
+    // WHEN I click into a time block
+    // THEN I can enter an event
+    // WHEN I click the save button for that time block
+    // THEN the text for that event is saved in local storage
+    // WHEN I refresh the page
+    // THEN the saved events persist
