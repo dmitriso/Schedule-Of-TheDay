@@ -5,14 +5,14 @@ var taskHour = [];
 // Event for clicking the save button
 $(".saveBtn").on("click", function (event) {
     event.preventDefault();
-    // Swaving user entry to variable
+    // Saving user entry to variable
     var taskData = $(this).siblings("textarea").val();
     // // Saving designated task hour
-    var taskHour = $(this).parent("div").attr("id");
+    var taskHour = $(this).parent("section").attr("id");
     // If the user leaves the field empty then the function is stopped.
     if (taskData === "") {
         return;
-    }
+    };
     // // Creating objects for each task in the DOM
     localStorage.setItem(taskHour, taskData);
     // // Saving over new value 
@@ -38,7 +38,7 @@ $("section").each(function (index) {
 $(document).ready(function () {
     // Must have funtion that uses the current New date and displays on heading
     $("#currentDay").text(moment().format("dddd, MMM. Do YY"));
-    console.log(moment().hours())
+    console.log(moment().hours());
 
     // Obtaining saved task from DOM
     $("#9 .task").val(localStorage.getItem("9"));
@@ -50,8 +50,7 @@ $(document).ready(function () {
     $("#15 .task").val(localStorage.getItem("15"));
     $("#16 .task").val(localStorage.getItem("16"));
     $("#17 .task").val(localStorage.getItem("17"));
-})
-
+});
 
 
 
