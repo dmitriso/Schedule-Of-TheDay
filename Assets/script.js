@@ -2,39 +2,58 @@
 var taskData = [];
 var taskHour = [];
 
+// Event for clicking the save button
+$(".saveBtn").on("click", function (event) {
+    event.preventDefault();
+    // Saving user entry to variable
+    var taskData = $(this).siblings("textarea").val();
+    // // Saving designated task hour
+    var taskHour = $(this).parent("div").attr("id");
+    // If the user leaves the field empty then the function is stopped.
+    if (taskData === "") {
+        return;
+    }
+    // // Creating objects for each task in the DOM
+    localStorage.setItem(taskHour, taskData);
+    // // Saving over new value 
+})
+
+
+// This function  affects each time block element and pulls each id
+$("section").each(function (index) {
+    console.log($(this).attr("id"));
+    var timeSlots = parseInt($(this).attr("id"));
+    if (timeSlots < moment().hour()) {
+        $(this).children(".task").addClass("past");
+    } else if (timeSlots === moment().hour()) {
+        $(this).children(".task").removeClass("past");
+        $(this).children(".task").addClass("present");
+    } else {
+        $(this).children(".task").removeClass("past");
+        $(this).children(".task").removeClass("present");
+        $(this).children(".task").addClass("future");
+    }
+});
+
 $(document).ready(function () {
     // Must have funtion that uses the current New date and displays on heading
     $("#currentDay").text(moment().format("dddd, MMM. Do YY"));
+    console.log(moment().hours())
+
+
+
     // Obtaining saved task from DOM
-    $("#1 .task").val(localStorage.getItem("1"));
-    $("#2 .task").val(localStorage.getItem("2"));
-    $("#3 .task").val(localStorage.getItem("3"));
-    $("#4 .task").val(localStorage.getItem("4"));
-    $("#5 .task").val(localStorage.getItem("5"));
-    $("#6 .task").val(localStorage.getItem("6"));
-    $("#7 .task").val(localStorage.getItem("7"));
-    $("#8 .task").val(localStorage.getItem("8"));
+    $("#9 .task").val(localStorage.getItem("9"));
+    $("#10 .task").val(localStorage.getItem("10"));
+    $("#11 .task").val(localStorage.getItem("11"));
+    $("#12 .task").val(localStorage.getItem("12"));
+    $("#13 .task").val(localStorage.getItem("13"));
+    $("#14 .task").val(localStorage.getItem("14"));
+    $("#15 .task").val(localStorage.getItem("15"));
+    $("#16 .task").val(localStorage.getItem("16"));
+    $("#17 .task").val(localStorage.getItem("17"));
 })
 
-    // Event for clicking the save button
-    $(".saveBtn").on("click", function(event) {
-        event.preventDefault();
-        console.log("ive been clicked");
-        // saving user entry to variable
-        var taskData = $(this).siblings("textarea").val();
-        // // saving designated task hour
-        var taskHour = $(this).parent("div").attr("id");
-        console.log(taskHour);
-        console.log(taskData);
-        // // creating objects for each task in the DOM
-        localStorage.setItem(taskHour, taskData);
-        // // saving over new value 
-    })
 
 
-    // WHEN I click into a time block
-    // THEN I can enter an event
-    // WHEN I click the save button for that time block
-    // THEN the text for that event is saved in local storage
-    // WHEN I refresh the page
-    // THEN the saved events persist
+
