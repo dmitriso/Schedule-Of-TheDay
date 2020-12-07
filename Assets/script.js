@@ -5,7 +5,7 @@ var taskHour = [];
 // Event for clicking the save button
 $(".saveBtn").on("click", function (event) {
     event.preventDefault();
-    // Saving user entry to variable
+    // Swaving user entry to variable
     var taskData = $(this).siblings("textarea").val();
     // // Saving designated task hour
     var taskHour = $(this).parent("div").attr("id");
@@ -40,8 +40,6 @@ $(document).ready(function () {
     $("#currentDay").text(moment().format("dddd, MMM. Do YY"));
     console.log(moment().hours())
 
-
-
     // Obtaining saved task from DOM
     $("#9 .task").val(localStorage.getItem("9"));
     $("#10 .task").val(localStorage.getItem("10"));
@@ -53,6 +51,7 @@ $(document).ready(function () {
     $("#16 .task").val(localStorage.getItem("16"));
     $("#17 .task").val(localStorage.getItem("17"));
 })
+
 
 
 

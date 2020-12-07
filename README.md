@@ -13,9 +13,14 @@ The planner is very simple to use! At top of the planner page underneath the tit
 
 <summary>Pictures of App with Directions</summary>
 
-
-
 </details>
+
+### URL
+
+Github Repository: https://github.com/dmitriso/Schedule-Of-TheDay
+
+Deployed App: https://dmitriso.github.io/Schedule-Of-TheDay/
+
 
 
 
